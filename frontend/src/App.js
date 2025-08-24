@@ -1,23 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import PlotCanvas from './components/plot-canvas/PlotCanvas';
+import React, { useState } from "react";
 
 function App() {
+  const [inputExpr, setInputExpr] = useState("sin(x^2)"); // textbox value
+  const [expr, setExpr] = useState("sin(x^2)");           // value passed to PlotCanvas
+
+  const handlePlot = () => {
+    setExpr(inputExpr); // commit the input only when "Plot" is clicked
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Curve Plotter</h2>
+      <input
+        type="text"
+        value={inputExpr}
+        onChange={(e) => setInputExpr(e.target.value)}
+        placeholder="Enter expression e.g. sin(x)"
+      />
+      <button onClick={handlePlot}>Plot</button>
+
+      {/* Pass the committed expression */}
+      <PlotCanvas expression={expr} drawType="curve"/>
     </div>
   );
 }
