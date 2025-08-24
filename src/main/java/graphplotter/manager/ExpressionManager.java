@@ -4,7 +4,6 @@ import graphplotter.converter.InfixToPostfixConverter;
 import graphplotter.logic.ExpressionTokenizer;
 import graphplotter.logic.PostfixEvaluator;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

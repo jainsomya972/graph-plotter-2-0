@@ -1,8 +1,13 @@
 package graphplotter.model;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import static graphplotter.constant.GlobalConstants.MIN_OP_PRIORITY;
 import static graphplotter.model.TokenType.*;
 
+@RequiredArgsConstructor
+@Getter
 public enum Token {
 
     // operators
@@ -41,14 +46,6 @@ public enum Token {
     private final Integer operandCount;
     private final OperateFunction operateFunction;
 
-    Token(String humanText, TokenType type, Integer operatorPriority, Integer operandCount, OperateFunction operateFunction) {
-        this.humanText = humanText;
-        this.type = type;
-        this.operatorPriority = operatorPriority;
-        this.operandCount = operandCount;
-        this.operateFunction = operateFunction;
-    }
-
     public static Token fromHumanText(String humanText) {
         for(Token t: Token.values()) {
            if(t.humanText.equals(humanText)) {
@@ -56,22 +53,6 @@ public enum Token {
            }
         }
         return null;
-    }
-
-    public String getHumanText() {
-        return humanText;
-    }
-
-    public TokenType getType() {
-        return type;
-    }
-    
-    public Integer getOperatorPriority() {
-        return operatorPriority;
-    }
-    
-    public Integer getOperandCount() {
-        return operandCount;
     }
 
     public Double operate(Double...args) {
